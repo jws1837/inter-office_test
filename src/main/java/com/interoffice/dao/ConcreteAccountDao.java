@@ -1,6 +1,6 @@
 package com.interoffice.dao;
 
-import com.interoffice.domain.Account;
+import com.interoffice.dto.Account;
 import org.springframework.stereotype.Repository;
 
 

@@ -1,5 +1,9 @@
-package com.interoffice.domain;
+package com.interoffice.dto;
 
+/**
+ * 계정정보 담겨있는 클래스.
+ *
+ */
 public class Account {
   private String id;
   private int password;

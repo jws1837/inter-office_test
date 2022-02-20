@@ -1,8 +1,12 @@
 package com.interoffice.service;
 
+import com.interoffice.dto.Account;
 import org.springframework.stereotype.Service;
-import com.interoffice.domain.Account;
 
+/**
+ * LoginService.
+ *
+ */
 @Service
 public interface LoginService {
 
