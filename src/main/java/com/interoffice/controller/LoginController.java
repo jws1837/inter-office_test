@@ -1,15 +1,16 @@
 package com.interoffice.controller;
 
 import com.interoffice.service.LoginService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *로그인을 관리하는 컨트롤러입니다. 
+ * 로그인을 관리하는 컨트롤러입니다.
  */
 @RestController
 public class LoginController {
@@ -19,16 +20,26 @@ public class LoginController {
 
 
   /**
-   * 로그인에 해당하는 매핑 메서드.
-   * 
+   * 로그인. 성공 - success 실패 - fail
    */
-  @RequestMapping(value = "/member/Login", method = {RequestMethod.GET})
-  public String sign(@RequestParam String id, @RequestParam int password, Model model) {
+  @PostMapping(value = "/Login")
+  public String login(@RequestParam String id, @RequestParam String password, HttpSession session) {
 
-    service.signIn();
-
-    return "success";
+    String result = service.login(session, id, password);
+    return result;
 
   }
+
+  /**
+   * 로그아웃.
+   */
+
+  @GetMapping(value = "/Logout")
+  public String sign(HttpSession session) {
+
+    service.logout(session);
+    return "success";
+  }
+
 
 }

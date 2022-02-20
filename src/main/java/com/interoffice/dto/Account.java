@@ -6,7 +6,12 @@ package com.interoffice.dto;
  */
 public class Account {
   private String id;
-  private int password;
+  private String password;
+
+  public Account(String id, String password) {
+    this.id = id;
+    this.password = password;
+  }
 
   public String getId() {
     return id;
@@ -16,11 +21,11 @@ public class Account {
     this.id = id;
   }
 
-  public int getPassword() {
+  public String getPassword() {
     return password;
   }
 
-  public void setPassword(int password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 

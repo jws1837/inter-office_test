@@ -3,12 +3,17 @@ package com.interoffice.dao;
 import com.interoffice.dto.Account;
 import org.springframework.stereotype.Repository;
 
+
 /**
- *데이터 접근하는 인터페이스입니다. 
+ * id,password관련 정보를 db에 접근해서 획득하는 클래스입니다.
  *
  */
 @Repository
-public interface AccountDao {
-  Account getAccount();
+public class AccountDao {
+
+  public Account getAccount(String id, String password) {
+    Account account = new Account(id, password);
+    return account;
+  }
 
 }
