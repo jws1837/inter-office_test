@@ -1,11 +1,15 @@
 package com.interoffice.dao;
 
-import org.springframework.stereotype.Repository;
 import com.interoffice.domain.Account;
+import org.springframework.stereotype.Repository;
 
 
+/**
+ * 구체적인 Dao 구현체입니다. 
+ *
+ */
 @Repository
-public class ConcreteAccountDAO implements AccountDAO {
+public class ConcreteAccountDao implements AccountDao {
 
   @Override
   public Account getAccount() {
