@@ -1,30 +1,34 @@
 package com.interoffice.contract.application.processor.command;
 
-import java.time.Instant;
 
 public class ContractCreateCommand {
-  private String name; // 회사명
+  private String companyName; // 회사명
   private String businessRegistrationNumber;  // 사업자등록번호
-  private String representation;  // 대표 이름;
-  private String phoneNumber; // 회사 대표 번호;
+  private String representation;  // 대표 이름
+  private String phoneNumber;  // 회사 대표 번호
+  private boolean isAutoResigned;  // 자동 재계약 여부
   private long resignUnit;  // 재계약 단위 (월)
-  private long amount;  // 결제 금액;
-  private String expiredDate;  // 계약 만료일
+  private long amount;  // 결제 금액
+  private String startDate;  // 계약 시작일
+  private String expireDate;  // 계약 만료일
 
   public ContractCreateCommand(String companyName, String businessRegistrationNumber,
-      String representation, String phoneNumber, long resignUnit, long amount,
-      String expiredDate) {
-    this.name = companyName;
+      String representation, String phoneNumber, boolean isAutoResigned, long resignUnit,
+      long amount,
+      String startDate, String expireDate) {
+    this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
     this.representation = representation;
     this.phoneNumber = phoneNumber;
+    this.isAutoResigned = isAutoResigned;
     this.resignUnit = resignUnit;
     this.amount = amount;
-    this.expiredDate = expiredDate;
+    this.startDate = startDate;
+    this.expireDate = expireDate;
   }
 
-  public String getName() {
-    return name;
+  public String getCompanyName() {
+    return companyName;
   }
 
   public String getBusinessRegistrationNumber() {
@@ -39,6 +43,10 @@ public class ContractCreateCommand {
     return phoneNumber;
   }
 
+  public boolean isAutoResigned() {
+    return isAutoResigned;
+  }
+
   public long getResignUnit() {
     return resignUnit;
   }
@@ -47,7 +55,11 @@ public class ContractCreateCommand {
     return amount;
   }
 
-  public String getExpiredDate() {
-    return expiredDate;
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public String getExpireDate() {
+    return expireDate;
   }
 }

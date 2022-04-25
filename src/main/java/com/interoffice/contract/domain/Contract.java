@@ -1,5 +1,6 @@
 package com.interoffice.contract.domain;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 public class Contract {
@@ -7,25 +8,29 @@ public class Contract {
 
   private String companyName; // 회사명
   private String businessRegistrationNumber;  // 사업자등록번호
-  private String representation;  // 대표 이름;
-  private String phoneNumber; // 회사 대표 번호;
+  private String representation;  // 대표 이름
+  private String phoneNumber;  // 회사 대표 번호
+  private boolean isAutoResigned;  // 자동 재계약 여부
   private long resignUnit;  // 재계약 단위 (월)
-  private long amount;  // 결제 금액;
-  private String expiredDate;  // 계약 만료일
+  private long amount;  // 결제 금액
+  private Timestamp startDate;  // 계약 시작일
+  private Timestamp expireDate;  // 계약 만료일
 
   private Instant createdAt;
   private Instant updatedAt;
 
   public Contract(String companyName, String businessRegistrationNumber,
-      String representation, String phoneNumber, long resignUnit, long amount,
-      String expiredDate) {
+      String representation, String phoneNumber, boolean isAutoResigned, long resignUnit, long amount,
+      Timestamp start, Timestamp end) {
     this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
     this.representation = representation;
     this.phoneNumber = phoneNumber;
+    this.isAutoResigned = isAutoResigned;
     this.resignUnit = resignUnit;
     this.amount = amount;
-    this.expiredDate = expiredDate;
+    this.startDate = start;
+    this.expireDate = end;
     this.createdAt = Instant.now();
     this.updatedAt = this.createdAt;
   }
@@ -54,6 +59,10 @@ public class Contract {
     return phoneNumber;
   }
 
+  public boolean isAutoResigned() {
+    return isAutoResigned;
+  }
+
   public long getResignUnit() {
     return resignUnit;
   }
@@ -62,8 +71,12 @@ public class Contract {
     return amount;
   }
 
-  public String getExpiredDate() {
-    return expiredDate;
+  public Timestamp getStartDate() {
+    return startDate;
+  }
+
+  public Timestamp getExpireDate() {
+    return expireDate;
   }
 
   public Instant getCreatedAt() {

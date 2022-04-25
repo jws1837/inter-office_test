@@ -3,7 +3,7 @@ package com.interoffice.contract.infrastructure.persistance;
 import com.interoffice.contract.domain.Contract;
 import com.interoffice.contract.domain.repository.ContractRepository;
 import com.interoffice.contract.infrastructure.persistance.memory.InMemoryContractRepository;
-import org.springframework.stereotype.Repository;
+import java.sql.Timestamp;
 
 public class ContractRepositoryAdapter implements ContractRepository {
   private InMemoryContractRepository inMemoryContractRepository;
@@ -16,6 +16,11 @@ public class ContractRepositoryAdapter implements ContractRepository {
   @Override
   public Contract save(Contract contract) {
     return inMemoryContractRepository.save(contract);
+  }
+
+  @Override
+  public Contract findByStartDateAndExpireDate(Timestamp start, Timestamp end) {
+    return inMemoryContractRepository.findByStartDateAndExpireDate(start, end);
   }
 
 }
