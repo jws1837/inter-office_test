@@ -1,8 +1,6 @@
 package com.interoffice.contract.application.processor.data;
 
-import com.interoffice.company.application.processor.data.CompanyData;
 import com.interoffice.contract.domain.Contract;
-import java.time.Instant;
 
 public class ContractData {
   private long id;
@@ -13,10 +11,9 @@ public class ContractData {
   private long resignUnit;  // 재계약 단위 (월)
   private long amount;  // 결제 금액;
   private String expiredDate;  // 계약 만료일
-  private CompanyData companyData;
 
   public ContractData(long id, String companyName, String businessRegistrationNumber, String representation,
-      String phoneNumber, long resignUnit, long amount, String expiredDate, CompanyData companyData) {
+      String phoneNumber, long resignUnit, long amount, String expiredDate) {
     this.id = id;
     this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
@@ -25,10 +22,9 @@ public class ContractData {
     this.resignUnit = resignUnit;
     this.amount = amount;
     this.expiredDate = expiredDate;
-    this.companyData = companyData;
   }
 
-  public static ContractData from(Contract contract, CompanyData companyData) {
+  public static ContractData from(Contract contract) {
     return new ContractData(
         contract.getId(),
         contract.getCompanyName(),
@@ -37,8 +33,7 @@ public class ContractData {
         contract.getPhoneNumber(),
         contract.getResignUnit(),
         contract.getAmount(),
-        contract.getExpiredDate(),
-        companyData
+        contract.getExpiredDate()
     );
   }
 

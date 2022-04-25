@@ -19,12 +19,14 @@ public class CompanyCreateProcessor {
   }
 
   public CompanyData execute(CompanyCreateCommand command) {
+    if (isExist(command.getBusinessRegistrationNumber())) {
+      throw new CompanyDuplicationException();
+    }
+
     Company company = new Company(
         command.getName(),
         command.getBusinessRegistrationNumber(),
-        command.getContractId(),
-        command.getOfficeId(),
-        command.getCreditId()
+        command.getRepresentMemberId()
     );
 
     companyRepository.save(company);

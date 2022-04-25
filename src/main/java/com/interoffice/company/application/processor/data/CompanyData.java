@@ -1,24 +1,19 @@
 package com.interoffice.company.application.processor.data;
 
 import com.interoffice.company.domain.Company;
-import com.interoffice.contract.domain.Contract;
 
 public class CompanyData {
   private long id;
   private String name;
   private String businessRegistrationNumber;
-  private long contractId;
-  private long officeId;
-  private long creditId;
+  // TODO: 회사 대표 정보 연결 로직 별도 설계 필요
+  private long representMemberId;
 
-  public CompanyData(long id, String name, String businessRegistrationNumber, long contractId,
-      long officeId, long creditId) {
+  public CompanyData(long id, String name, String businessRegistrationNumber, long representMemberId) {
     this.id = id;
     this.name = name;
     this.businessRegistrationNumber = businessRegistrationNumber;
-    this.contractId = contractId;
-    this.officeId = officeId;
-    this.creditId = creditId;
+    this.representMemberId = representMemberId;
   }
 
   public static CompanyData from(Company company) {
@@ -26,9 +21,7 @@ public class CompanyData {
         company.getId(),
         company.getName(),
         company.getBusinessRegistrationNumber(),
-        company.getContractId(),
-        company.getOfficeId(),
-        company.getCreditId()
+        company.getRepresentMemberId()
     );
   }
 
@@ -44,15 +37,7 @@ public class CompanyData {
     return businessRegistrationNumber;
   }
 
-  public long getContractId() {
-    return contractId;
-  }
-
-  public long getOfficeId() {
-    return officeId;
-  }
-
-  public long getCreditId() {
-    return creditId;
+  public long getRepresentMemberId() {
+    return representMemberId;
   }
 }

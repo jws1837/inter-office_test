@@ -8,21 +8,16 @@ public class Company {
 
   private String name;
   private String businessRegistrationNumber;
-
-  private long contractId;
-  private long officeId;
-  private long creditId;
+  // TODO: 회사 대표 정보 연결 로직 별도 설계 필요
+  private long representMemberId;
 
   private Instant createdAt;
   private Instant updatedAt;
 
-  public Company(String name, String businessRegistrationNumber, long contractId,
-      long officeId, long creditId) {
+  public Company(String name, String businessRegistrationNumber, long representMemberId) {
     this.name = name;
     this.businessRegistrationNumber = businessRegistrationNumber;
-    this.contractId = contractId;
-    this.officeId = officeId;
-    this.creditId = creditId;
+    this.representMemberId = representMemberId;
     this.createdAt = Instant.now();
     this.updatedAt = this.createdAt;
   }
@@ -43,16 +38,8 @@ public class Company {
     return businessRegistrationNumber;
   }
 
-  public long getContractId() {
-    return contractId;
-  }
-
-  public long getOfficeId() {
-    return officeId;
-  }
-
-  public long getCreditId() {
-    return creditId;
+  public long getRepresentMemberId() {
+    return representMemberId;
   }
 
   public Instant getCreatedAt() {

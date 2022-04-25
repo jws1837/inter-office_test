@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ContractExceptionHandler {
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(CompanyDuplicationException.class)
-  public ApiResponse<?> handle(CompanyDuplicationException ex) {
-    return ApiResponse.fail(
-        "BUSINESS_REGISTRATION_NUMBER_DUPLICATED",
-        "business registration number is duplicated");
-  }
+  // TODO: 동일한 계약 기간 계약 건에 대한 exception
+//  @ResponseStatus(HttpStatus.BAD_REQUEST)
+//  @ExceptionHandler(CompanyDuplicationException.class)
+//  public ApiResponse<?> handle(CompanyDuplicationException ex) {
+//    return ApiResponse.fail(
+//        "BUSINESS_REGISTRATION_NUMBER_DUPLICATED",
+//        "business registration number is duplicated");
+//  }
 }

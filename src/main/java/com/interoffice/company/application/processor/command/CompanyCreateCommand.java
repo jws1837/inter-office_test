@@ -1,29 +1,17 @@
 package com.interoffice.company.application.processor.command;
 
-import com.interoffice.contract.domain.Contract;
 
 public class CompanyCreateCommand {
   private String name;
   private String businessRegistrationNumber;
-  private long contractId;
-  private long officeId;
-  private long creditId;
+  // TODO: 회사 대표 정보 연결 로직 별도 설계 필요
+  private long representMemberId;
 
   public CompanyCreateCommand(String name, String businessRegistrationNumber,
-      long contractId, long officeId, long creditId) {
+      long representMemberId) {
     this.name = name;
     this.businessRegistrationNumber = businessRegistrationNumber;
-    this.contractId = contractId;
-    this.officeId = officeId;
-    this.creditId = creditId;
-  }
-
-  public CompanyCreateCommand(Contract contract) {
-    this.name = contract.getCompanyName();
-    this.contractId = contract.getId();
-    this.businessRegistrationNumber = contract.getBusinessRegistrationNumber();
-    this.officeId = 0L; // TODO
-    this.creditId = 0L; // TODO
+    this.representMemberId = representMemberId;
   }
 
   public String getName() {
@@ -34,15 +22,7 @@ public class CompanyCreateCommand {
     return businessRegistrationNumber;
   }
 
-  public long getContractId() {
-    return contractId;
-  }
-
-  public long getOfficeId() {
-    return officeId;
-  }
-
-  public long getCreditId() {
-    return creditId;
+  public long getRepresentMemberId() {
+    return representMemberId;
   }
 }
