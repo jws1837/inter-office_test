@@ -5,7 +5,7 @@ import com.interoffice.contract.application.processor.data.ContractData;
 import com.interoffice.contract.domain.Contract;
 import com.interoffice.contract.domain.exception.ContractOverlappingPeriodException;
 import com.interoffice.contract.domain.repository.ContractRepository;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class ContractCreateProcessor {
   private ContractRepository contractRepository;
@@ -15,15 +15,12 @@ public class ContractCreateProcessor {
     this.contractRepository = contractRepository;
   }
 
-  public boolean isExist(Timestamp start, Timestamp end) {
+  private boolean isExist(LocalDate start, LocalDate end) {
     return null != contractRepository.findByStartDateAndExpireDate(start, end);
   }
 
   public ContractData execute(ContractCreateCommand command) {
-    Timestamp start = Timestamp.valueOf(command.getStartDate() + " 00:00:00");
-    Timestamp end = Timestamp.valueOf(command.getExpireDate() + " 00:00:00");
-
-    if (isExist(start, end)) {
+    if (isExist(command.getStartDate(), command.getExpireDate())) {
       throw new ContractOverlappingPeriodException();
     }
 
@@ -35,8 +32,8 @@ public class ContractCreateProcessor {
         command.isAutoResigned(),
         command.getResignUnit(),
         command.getAmount(),
-        start,
-        end
+        command.getStartDate(),
+        command.getExpireDate()
     );
 
     contractRepository.save(contract);

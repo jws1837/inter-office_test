@@ -14,7 +14,7 @@ public class CompanyCreateProcessor {
     this.companyRepository = companyRepository;
   }
 
-  public boolean isExist(String businessRegistrationNumber) {
+  private boolean isExist(String businessRegistrationNumber) {
     return null != companyRepository.findByBusinessRegistrationNumber(businessRegistrationNumber);
   }
 

@@ -2,6 +2,7 @@ package com.interoffice.contract.domain;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class Contract {
   private long id = 0L;
@@ -13,15 +14,15 @@ public class Contract {
   private boolean isAutoResigned;  // 자동 재계약 여부
   private long resignUnit;  // 재계약 단위 (월)
   private long amount;  // 결제 금액
-  private Timestamp startDate;  // 계약 시작일
-  private Timestamp expireDate;  // 계약 만료일
+  private LocalDate startDate;  // 계약 시작일
+  private LocalDate expireDate;  // 계약 만료일
 
   private Instant createdAt;
   private Instant updatedAt;
 
   public Contract(String companyName, String businessRegistrationNumber,
       String representation, String phoneNumber, boolean isAutoResigned, long resignUnit, long amount,
-      Timestamp start, Timestamp end) {
+      LocalDate start, LocalDate end) {
     this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
     this.representation = representation;
@@ -71,11 +72,11 @@ public class Contract {
     return amount;
   }
 
-  public Timestamp getStartDate() {
+  public LocalDate getStartDate() {
     return startDate;
   }
 
-  public Timestamp getExpireDate() {
+  public LocalDate getExpireDate() {
     return expireDate;
   }
 

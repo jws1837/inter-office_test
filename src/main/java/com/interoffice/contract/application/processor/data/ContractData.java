@@ -3,6 +3,7 @@ package com.interoffice.contract.application.processor.data;
 import com.interoffice.contract.domain.Contract;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class ContractData {
   private long id;
@@ -13,12 +14,12 @@ public class ContractData {
   private boolean isAutoResigned;  // 자동 재계약 여부
   private long resignUnit;  // 재계약 단위 (월)
   private long amount;  // 결제 금액
-  private Timestamp start;  // 계약 시작일
-  private Timestamp end;  // 계약 만료일
+  private LocalDate start;  // 계약 시작일
+  private LocalDate end;  // 계약 만료일
 
   public ContractData(long id, String companyName, String businessRegistrationNumber,
       String representation, String phoneNumber, boolean isAutoResigned, long resignUnit,
-      long amount, Timestamp start, Timestamp end) {
+      long amount, LocalDate start, LocalDate end) {
     this.id = id;
     this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
@@ -78,11 +79,11 @@ public class ContractData {
     return amount;
   }
 
-  public Timestamp getStart() {
+  public LocalDate getStart() {
     return start;
   }
 
-  public Timestamp getEnd() {
+  public LocalDate getEnd() {
     return end;
   }
 }

@@ -1,6 +1,9 @@
 package com.interoffice.contract.application.processor.command;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDate;
+
 public class ContractCreateCommand {
   private String companyName; // 회사명
   private String businessRegistrationNumber;  // 사업자등록번호
@@ -9,13 +12,15 @@ public class ContractCreateCommand {
   private boolean isAutoResigned;  // 자동 재계약 여부
   private long resignUnit;  // 재계약 단위 (월)
   private long amount;  // 결제 금액
-  private String startDate;  // 계약 시작일
-  private String expireDate;  // 계약 만료일
+
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDate startDate;  // 계약 시작일
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDate expireDate;  // 계약 만료일
 
   public ContractCreateCommand(String companyName, String businessRegistrationNumber,
       String representation, String phoneNumber, boolean isAutoResigned, long resignUnit,
-      long amount,
-      String startDate, String expireDate) {
+      long amount, LocalDate startDate, LocalDate expireDate) {
     this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
     this.representation = representation;
@@ -55,11 +60,11 @@ public class ContractCreateCommand {
     return amount;
   }
 
-  public String getStartDate() {
+  public LocalDate getStartDate() {
     return startDate;
   }
 
-  public String getExpireDate() {
+  public LocalDate getExpireDate() {
     return expireDate;
   }
 }
