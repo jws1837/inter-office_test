@@ -1,12 +1,12 @@
 package com.interoffice.contract.domain;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 
 public class Contract {
   private long id = 0L;
 
+  private long companyId;
   private String companyName; // 회사명
   private String businessRegistrationNumber;  // 사업자등록번호
   private String representation;  // 대표 이름
@@ -20,9 +20,10 @@ public class Contract {
   private Instant createdAt;
   private Instant updatedAt;
 
-  public Contract(String companyName, String businessRegistrationNumber,
+  public Contract(long companyId, String companyName, String businessRegistrationNumber,
       String representation, String phoneNumber, boolean isAutoResigned, long resignUnit, long amount,
       LocalDate start, LocalDate end) {
+    this.companyId = companyId;
     this.companyName = companyName;
     this.businessRegistrationNumber = businessRegistrationNumber;
     this.representation = representation;
@@ -42,6 +43,10 @@ public class Contract {
 
   public long getId() {
     return id;
+  }
+
+  public long getCompanyId() {
+    return companyId;
   }
 
   public String getCompanyName() {

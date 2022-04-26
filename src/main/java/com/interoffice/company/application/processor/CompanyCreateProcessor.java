@@ -4,6 +4,7 @@ import com.interoffice.company.application.processor.command.CompanyCreateComman
 import com.interoffice.company.application.processor.data.CompanyData;
 import com.interoffice.company.domain.Company;
 import com.interoffice.company.domain.exception.CompanyDuplicationException;
+import com.interoffice.company.domain.exception.CompanyNotFoundException;
 import com.interoffice.company.domain.repository.CompanyRepository;
 
 public class CompanyCreateProcessor {
@@ -14,7 +15,7 @@ public class CompanyCreateProcessor {
     this.companyRepository = companyRepository;
   }
 
-  private boolean isExist(String businessRegistrationNumber) {
+  public boolean isExist(String businessRegistrationNumber) {
     return null != companyRepository.findByBusinessRegistrationNumber(businessRegistrationNumber);
   }
 
@@ -32,6 +33,14 @@ public class CompanyCreateProcessor {
     companyRepository.save(company);
 
     return CompanyData.from(company);
+  }
+
+  public long getId(String businessRegistrationNumber) {
+    if (!isExist(businessRegistrationNumber)) {
+      throw new CompanyNotFoundException();
+    }
+
+    return companyRepository.findByBusinessRegistrationNumber(businessRegistrationNumber).getId();
   }
 
 }

@@ -25,4 +25,11 @@ public class InMemoryCompanyRepository {
         .findFirst()
         .orElse(null);
   }
+
+  public boolean isExistedBusinessRegistrationNumber(String businessRegistrationNumber) {
+    return companyMap
+        .values()
+        .stream()
+        .anyMatch(it -> it.getBusinessRegistrationNumber().equals(businessRegistrationNumber));
+  }
 }

@@ -19,8 +19,10 @@ public class ContractRepositoryAdapter implements ContractRepository {
   }
 
   @Override
-  public Contract findByStartDateAndExpireDate(LocalDate start, LocalDate end) {
-    return inMemoryContractRepository.findByStartDateAndExpireDate(start, end);
+  public Contract findByBusinessRegistrationNumberAndStartDateAndExpireDate(
+      String businessRegistrationNumber, LocalDate start, LocalDate end) {
+    return inMemoryContractRepository.findByBusinessRegistrationNumberAndStartDateAndExpireDate(
+        businessRegistrationNumber, start, end);
   }
 
 }

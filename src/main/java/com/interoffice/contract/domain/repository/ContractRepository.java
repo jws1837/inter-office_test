@@ -5,5 +5,6 @@ import java.time.LocalDate;
 
 public interface ContractRepository {
   Contract save(Contract contract);
-  Contract findByStartDateAndExpireDate(LocalDate start, LocalDate end);
+  Contract findByBusinessRegistrationNumberAndStartDateAndExpireDate(
+      String businessRegistrationNumber, LocalDate start, LocalDate end);
 }

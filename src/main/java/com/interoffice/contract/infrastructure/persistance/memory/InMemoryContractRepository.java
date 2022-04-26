@@ -19,14 +19,16 @@ public class InMemoryContractRepository {
     return contractMap.put(contract.getId(), contract);
   }
 
-  public Contract findByStartDateAndExpireDate(LocalDate start, LocalDate end) {
+  public Contract findByBusinessRegistrationNumberAndStartDateAndExpireDate(
+      String businessRegistrationNumber, LocalDate start, LocalDate end) {
     return contractMap
         .values()
         .stream()
-        .filter(it -> (it.getStartDate().equals(start) && it.getExpireDate().isBefore(end)) ||
+        .filter(it -> it.getBusinessRegistrationNumber().equals(businessRegistrationNumber)
+            && ((it.getStartDate().equals(start) && it.getExpireDate().isBefore(end)) ||
             (it.getStartDate().isAfter(start) && it.getExpireDate().isBefore(end)) ||
             (it.getStartDate().isAfter(start) && it.getExpireDate().equals(end)) ||
-            (it.getStartDate().equals(start) && it.getExpireDate().equals(end)))
+            (it.getStartDate().equals(start) && it.getExpireDate().equals(end))))
         .findFirst()
         .orElse(null);
   }

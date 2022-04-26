@@ -1,5 +1,6 @@
 package com.interoffice.contract.presentation.handler;
 
+import com.interoffice.company.domain.exception.CompanyNotFoundException;
 import com.interoffice.contract.domain.exception.ContractOverlappingPeriodException;
 import com.interoffice.shared.api.ApiResponse;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,15 @@ public class ContractExceptionHandler {
     return ApiResponse.fail(
         "DURATION_OF_CONTRACT_EXISTED",
         "duration of contract is existed"
+    );
+  }
+
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  @ExceptionHandler(CompanyNotFoundException.class)
+  public ApiResponse<?> handle(CompanyNotFoundException ex) {
+    return ApiResponse.fail(
+        "COMPANY_NOT_FOUND",
+        "company is not found"
     );
   }
 }
