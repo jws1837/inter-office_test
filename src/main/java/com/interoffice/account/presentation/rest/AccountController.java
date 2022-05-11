@@ -30,12 +30,8 @@ public class AccountController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(path = "/login")
     public ApiResponse<AccountData> loginAccount(@RequestBody AccountLoginCommand command, HttpServletRequest request) {
-//        request.getSession().setAttribute("LoginSession",data); //session repository를 따로 만들어야 하는 건가?
           AccountData data = accountFacade.loginAccount(command);
-//        request.getSession().setAttribute("LoginSession",22); //session repository를 따로 만들어야 하는 건가?
-//        System.out.println("session 완료 ");
-//        int value = (int)request.getSession().getAttribute("LoginSession");
-//        System.out.println(value);
+        request.getSession().setAttribute("LoginSession",data);
         return ApiResponse.success(data);
     }
 }
