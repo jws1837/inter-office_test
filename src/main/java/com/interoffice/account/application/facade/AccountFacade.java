@@ -5,9 +5,6 @@ import com.interoffice.account.application.processor.AccountLoginProcessor;
 import com.interoffice.account.application.processor.command.AccountCreateCommand;
 import com.interoffice.account.application.processor.command.AccountLoginCommand;
 import com.interoffice.account.application.processor.data.AccountData;
-import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 public class AccountFacade {
     private final AccountCreateProcessor accountCreateProcessor;
@@ -26,6 +23,7 @@ public class AccountFacade {
     public AccountData loginAccount(AccountLoginCommand command) {
         return accountLoginProcessor.execute(command);
     }
+
 
 
 }

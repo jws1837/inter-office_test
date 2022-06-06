@@ -4,8 +4,9 @@ import com.interoffice.account.application.processor.command.AccountLoginCommand
 import com.interoffice.account.application.processor.data.AccountData;
 import com.interoffice.account.domain.Account;
 import com.interoffice.account.domain.PasswordEncoder;
-import com.interoffice.account.domain.exception.AccountNotFoundException;
-import com.interoffice.account.domain.repository.AccountRepository;
+import com.interoffice.account.application.exception.AccountNotFoundException;
+import com.interoffice.account.application.exception.NotEqualPasswordException;
+import com.interoffice.account.infrastructure.persistence.AccountRepository;
 
 public class AccountLoginProcessor {
     private final AccountRepository accountRepository;
@@ -23,7 +24,7 @@ public class AccountLoginProcessor {
             throw new AccountNotFoundException();
         }
         if (!account.validatePassword(passwordEncoder, command.getPassword())) {
-            throw new AccountNotFoundException();
+            throw new NotEqualPasswordException();
         }
         return AccountData.from(account);
     }

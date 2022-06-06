@@ -21,8 +21,7 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(String email, String password, String username,
-                   String phoneNumber) {
+    public Account(String email, String password, String username, String phoneNumber) {
         this.email = email;
         this.password = password;
         this.username = username;
@@ -30,6 +29,7 @@ public class Account implements Serializable {
         this.createdAt = LocalDateTime.now();
         this.modifiedAt = this.createdAt;
     }
+
 
     public Long getId() {
         return id;

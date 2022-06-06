@@ -4,7 +4,7 @@ import com.interoffice.account.application.facade.AccountFacade;
 import com.interoffice.account.application.processor.AccountCreateProcessor;
 import com.interoffice.account.application.processor.AccountLoginProcessor;
 import com.interoffice.account.domain.PasswordEncoder;
-import com.interoffice.account.domain.repository.AccountRepository;
+import com.interoffice.account.infrastructure.persistence.AccountRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -8,7 +8,7 @@ import com.interoffice.shared.api.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping(path = "/account")
 @RestController
@@ -29,9 +29,18 @@ public class AccountController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(path = "/login")
-    public ApiResponse<AccountData> loginAccount(@RequestBody AccountLoginCommand command, HttpServletRequest request) {
-          AccountData data = accountFacade.loginAccount(command);
-        request.getSession().setAttribute("LoginSession",data);
+    public ApiResponse<AccountData> loginAccount(@RequestBody AccountLoginCommand command, HttpSession session) {
+        AccountData data = accountFacade.loginAccount(command);
+        session.setAttribute("loginInfo", data);
+        session.setMaxInactiveInterval(1800);
         return ApiResponse.success(data);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(path = "/logout")
+    public ApiResponse<String> logoutAccount(HttpSession session) {
+        session.invalidate();
+        return ApiResponse.success("로그아웃에 성공하였습니다.");
+    }
+
 }

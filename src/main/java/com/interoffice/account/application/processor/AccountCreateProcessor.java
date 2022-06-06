@@ -4,32 +4,32 @@ import com.interoffice.account.application.processor.command.AccountCreateComman
 import com.interoffice.account.application.processor.data.AccountData;
 import com.interoffice.account.domain.Account;
 import com.interoffice.account.domain.PasswordEncoder;
-import com.interoffice.account.domain.repository.AccountRepository;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import com.interoffice.account.infrastructure.persistence.AccountRepository;
 
 public class AccountCreateProcessor {
-  private final AccountRepository accountRepository;
-  private final PasswordEncoder passwordEncoder;
+    private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
-  public AccountCreateProcessor(
-      AccountRepository accountRepository,
-      PasswordEncoder passwordEncoder) {
-    this.accountRepository = accountRepository;
-    this.passwordEncoder = passwordEncoder;
-  }
-
-  public AccountData execute(AccountCreateCommand command)  {
-    if(null!=accountRepository.findByEmail(command.getEmail())){
-      throw new RuntimeException("not equals email");
+    public AccountCreateProcessor(
+            AccountRepository accountRepository,
+            PasswordEncoder passwordEncoder) {
+        this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-    Account account = new Account(
-        command.getEmail(),
-        passwordEncoder.encode(command.getPassword()),
-        command.getName(),
-        command.getPhoneNumber()
-    );
-    accountRepository.save(account);
-    return AccountData.from(account);
-  }
+
+    public AccountData execute(AccountCreateCommand command) {
+        //Todo:findByEmail() 처리 안되서 잠깐 주석처리 .
+//        if (null != accountRepository.findByEmail(command.getEmail())) {
+//            throw new RegisterdAccountException();
+//        }
+        Account account = new Account(
+                command.getEmail(),
+                passwordEncoder.encode(command.getPassword()),
+                command.getName(),
+                command.getPhoneNumber()
+        );
+        accountRepository.save(account);
+        return AccountData.from(account);
+
+    }
 }

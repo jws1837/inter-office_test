@@ -21,9 +21,17 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //Todo: 로컬로 테스트한후 8.0 도커로 변경하기.
+    implementation 'mysql:mysql-connector-java:5.1.41'
+//    implementation 'mysql:mysql-connector-java:8.0.29'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.0'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+
 }
 
 tasks.named('test') {
